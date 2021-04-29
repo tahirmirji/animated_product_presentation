@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:animated_product_presentation/travel_concept_page.dart';
 
-class TravelConceptDetailPage extends StatelessWidget {
+class BikeConceptDetailPage extends StatelessWidget {
   final LocationCard location;
 
-  const TravelConceptDetailPage({Key key, this.location}) : super(key: key);
+  const BikeConceptDetailPage({Key key, this.location}) : super(key: key);
 
   void _onVerticalDrag(
     DragUpdateDetails details,
@@ -40,9 +40,9 @@ class TravelConceptDetailPage extends StatelessWidget {
                   backgroundImage: NetworkImage(avatars.last),
                   radius: 15,
                 ),
-                title: Text('The Dart Side'),
+                title: Text(location.title),
                 subtitle: Text(
-                    'Come to the Dart Side :) ..... $index\nline 22222 \nline 33'),
+                    'Reviews from buyer $index \n Must Buy \n Recomonded'),
               ),
             );
           })

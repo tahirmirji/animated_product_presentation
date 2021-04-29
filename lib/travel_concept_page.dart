@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'travel_concept_detail_page.dart';
-//Design inspiration: https://www.pinterest.es/pin/712624341008795049/
+import 'bike_concept_detail_page.dart';
 
 const duration = Duration(milliseconds: 300);
 
-class TravelConceptPage extends StatefulWidget {
+class BikeConceptPage extends StatefulWidget {
   @override
-  _TravelConceptPageState createState() => _TravelConceptPageState();
+  _BikeConceptPageState createState() => _BikeConceptPageState();
 }
 
 const backgroundColor = Color(0xFF8F9CAC);
 
-class _TravelConceptPageState extends State<TravelConceptPage> {
+class _BikeConceptPageState extends State<BikeConceptPage> {
   int _currentPage = 0;
 
   @override
@@ -33,7 +32,7 @@ class _TravelConceptPageState extends State<TravelConceptPage> {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
-            title: Text('TOFIND'),
+            title: Text('ELECTRIC BIKE SHOPE - NextinGo'),
             actions: [
               IconButton(
                 onPressed: () => null,
@@ -60,7 +59,7 @@ class _TravelConceptPageState extends State<TravelConceptPage> {
                   itemBuilder: (_, index) => AnimatedOpacity(
                     duration: duration,
                     opacity: _currentPage == index ? 1.0 : 0.5,
-                    child: TravelItem(
+                    child: BikeItem(
                       item: locations[index],
                       itemSelected: _currentPage == index,
                     ),
@@ -85,26 +84,26 @@ class _TravelConceptPageState extends State<TravelConceptPage> {
   }
 }
 
-class TravelItem extends StatefulWidget {
+class BikeItem extends StatefulWidget {
   final bool itemSelected;
   final LocationCard item;
 
-  const TravelItem({
+  const BikeItem({
     Key key,
     this.itemSelected,
     this.item,
   }) : super(key: key);
 
   @override
-  _TravelItemState createState() => _TravelItemState();
+  _BikeItemState createState() => _BikeItemState();
 }
 
-class _TravelItemState extends State<TravelItem> {
+class _BikeItemState extends State<BikeItem> {
   bool _selected = false;
 
   void _onTap() {
     if (_selected) {
-      final page = TravelConceptDetailPage(
+      final page = BikeConceptDetailPage(
         location: widget.item,
       );
       Navigator.of(context).push(
@@ -137,7 +136,7 @@ class _TravelItemState extends State<TravelItem> {
         child: Icon(
           Icons.star,
           size: 20,
-          color: starSelected ? Colors.blueAccent : Colors.grey,
+          color: starSelected ? Colors.orange : Colors.grey,
         ),
       );
 
@@ -175,29 +174,34 @@ class _TravelItemState extends State<TravelItem> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          'La Crescenta - Montrose, CA91020',
+                          widget.item.title,
                           style: TextStyle(
-                            fontSize: 11,
+                            fontSize: 25,
                             color: Colors.black,
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: Row(
                             children: [
                               Expanded(
                                 flex: 3,
                                 child: Text(
-                                  'NO. 7911847',
+                                  'Rs. ${widget.item.price}',
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 20,
                                     color: Colors.black,
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: 20.0,
+                              ),
                               Expanded(
                                 flex: 2,
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     _buildStar(),
                                     _buildStar(),
@@ -221,6 +225,7 @@ class _TravelItemState extends State<TravelItem> {
                                   (f) => Align(
                                     widthFactor: 0.85,
                                     child: CircleAvatar(
+                                       backgroundColor: Colors.transparent,
                                       backgroundImage: NetworkImage(f),
                                       radius: 15,
                                     ),
@@ -266,14 +271,20 @@ class _TravelItemState extends State<TravelItem> {
                           ),
                         ),
                         Align(
-                          alignment: Alignment.topCenter,
+                          alignment: Alignment.bottomCenter,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              widget.item.title,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
+                            child: Container(
+                              padding: EdgeInsets.only(left:50.0, right:50.0),
+                              decoration: BoxDecoration(color: Colors.black45,
+                              
+                              ),
+                              child: Text(
+                                widget.item.title,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
                           ),
@@ -292,32 +303,37 @@ class _TravelItemState extends State<TravelItem> {
 }
 
 class LocationCard {
+  final String price;
   final String title;
   final String imageUrl;
 
-  LocationCard({this.title, this.imageUrl});
+  LocationCard({this.title, this.imageUrl, this.price});
 }
 
 List<LocationCard> locations = [
   LocationCard(
-    title: 'New York',
+    price: '1,50,000',
+    title: 'Ather',
     imageUrl:
-        'https://image.freepik.com/foto-gratis/skyline-ciudad-nueva-york-centro-manhattan-rascacielos-al-atardecer-ee-uu_56199-56.jpg',
+        'https://bs-ather-jobs-assests.s3-ap-south-1.amazonaws.com/bpa-assests/mini-450x-referral-banner.png',
   ),
   LocationCard(
-    title: 'San Francisco',
+    price: '1,20,000',
+    title: 'Chetak',
     imageUrl:
-        'https://image.freepik.com/foto-gratis/puente-golden-gate-san-francisco_119101-1.jpg',
+        'https://media.zigcdn.com/media/content/2019/Nov/chetak_thumb.jpg',
   ),
   LocationCard(
-    title: 'Madrid',
+    price: '1,45,000',
+    title: 'Revolt RV400',
     imageUrl:
-        'https://image.freepik.com/foto-gratis/horizonte-ciudad-madrid-dia_119101-27.jpg',
+        'https://images.carandbike.com/bike-images/large/revolt/rv400/revolt-rv400.jpg?v=9',
   ),
   LocationCard(
-    title: 'Chicago',
+    price: '80,000',
+    title: 'TVS iQube',
     imageUrl:
-        'https://image.freepik.com/foto-gratis/horizonte-chicago-ferrocarril_1426-1021.jpg',
+        'https://imgd.aeplcdn.com/1200x900/bw/models/tvs-iqube-standard20200125210025.jpg',
   ),
 ];
 
