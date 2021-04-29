@@ -28,16 +28,62 @@ class _BikeConceptPageState extends State<BikeConceptPage> {
           ),
         ),
         child: Scaffold(
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                UserAccountsDrawerHeader(
+                  accountName: Text('NextinGo'),
+                  accountEmail: Text('ccount@gmail.com'),
+                  currentAccountPicture: CircleAvatar(
+                    child: Text('N'),
+                    backgroundColor: Colors.white,
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(Icons.account_circle),
+                  title: Text('Profle'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.favorite),
+                  title: Text('My Bikes'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('Settings'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.notifications),
+                  title: Text('Notifications'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.logout),
+                  title: Text('Logout'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          ),
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
-            title: Text('ELECTRIC BIKE SHOPE - NextinGo'),
+            title: Text('Animated Products '),
             actions: [
               IconButton(
                 onPressed: () => null,
                 icon: Icon(
-                  Icons.location_searching,
+                  Icons.search,
                   color: Colors.white,
                 ),
               )
@@ -200,7 +246,8 @@ class _BikeItemState extends State<BikeItem> {
                               Expanded(
                                 flex: 2,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     _buildStar(),
@@ -225,7 +272,7 @@ class _BikeItemState extends State<BikeItem> {
                                   (f) => Align(
                                     widthFactor: 0.85,
                                     child: CircleAvatar(
-                                       backgroundColor: Colors.transparent,
+                                      backgroundColor: Colors.transparent,
                                       backgroundImage: NetworkImage(f),
                                       radius: 15,
                                     ),
@@ -275,9 +322,9 @@ class _BikeItemState extends State<BikeItem> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              padding: EdgeInsets.only(left:50.0, right:50.0),
-                              decoration: BoxDecoration(color: Colors.black45,
-                              
+                              padding: EdgeInsets.only(left: 50.0, right: 50.0),
+                              decoration: BoxDecoration(
+                                color: Colors.black45,
                               ),
                               child: Text(
                                 widget.item.title,
